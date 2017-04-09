@@ -1,0 +1,169 @@
+// 基础定位
+.width(@width: 100%;) {
+    width: @width;
+}
+.w(@width: 100%;) {
+    width: @width;
+}
+.height(@height: 100%;) {
+    height: @height;
+}
+.h(@height: 100%;) {
+    height: @height;
+}
+.ab() {
+    position: absolute;
+}
+.re() {
+    position: relative;
+}
+.fx() {
+    position: fixed;
+}
+.left(@left: 0) {
+    left: @left;
+}
+.x(@left: 0) {
+    left: @left;
+}
+.right(@right: 0) {
+    right: @right;
+}
+.top(@top: 0) {
+    top: @top;
+}
+.y(@top: 0) {
+    top: @top;
+}
+.bottom(@bottom: 0) {
+    bottom: @bottom;
+}
+.block() {
+    display: block;
+}
+.hide() {
+    display: none;
+}
+.x-c() {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+}
+.y-c() {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+}
+.c-c() {
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%,-50%);
+}
+.center() {
+    text-align: center;
+}
+.clear() {
+    //清除浮动
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+.border-bottom(@color:rgba(0, 0, 0, 0.2)) {
+    //单下边框
+    &:after {
+        content: '';
+        .ab;
+        .width;
+        .left;
+        .bottom;
+        height: 1px;
+        background-color: @color;
+        -webkit-transform: scaleY(0.5);
+    }
+}
+.border-bottom-before(@color:rgba(0, 0, 0, 0.2)) {
+    //单下边框
+    &:before {
+        content: '';
+        .ab;
+        .width;
+        .left;
+        .bottom;
+        height: 1px;
+        background-color: @color;
+        -webkit-transform: scaleY(0.5);
+    }
+}
+.border-top(@color:rgba(0, 0, 0, 0.2)) {
+    //单上边框
+    &:after {
+        content: '';
+        .ab;
+        .width;
+        .left;
+        .top;
+        height: 1px;
+        background-color: @color;
+        -webkit-transform: scaleY(0.5);
+    }
+}
+.border-top-before(@color:rgba(0, 0, 0, 0.2)) {
+    //单上边框
+    &:before {
+        content: '';
+        .ab;
+        .width;
+        .left;
+        .top;
+        height: 1px;
+        background-color: @color;
+        -webkit-transform: scaleY(0.5);
+    }
+}
+// 单行超出省略号
+.ellipsis() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+//多行超出省略号-默认两行
+.ellipsis-line(@line:2) {
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: @line;
+    -webkit-box-orient: vertical;
+}
+// 隐藏滚动条
+.scrollbar-none() {
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+// 圆角
+.radius(@radius:50%) {
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+}
+//插入文字
+.before(@text:'') {
+    &:before {
+        content: @text;
+    }
+}
+//状态栏
+.statusbar(@h:0) {
+    height: @h;
+    width: 100%;
+    background-color: @main_color;
+}
+//全屏
+.fullscreen(){
+    .ab;
+    .w;
+    .h;
+    .x;
+    .y;
+}

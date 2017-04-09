@@ -1,0 +1,27 @@
+{
+  "name": "z800",
+  "version": "2.0.0",
+  "description": "z800",
+  "license": "MIT",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "adbkit": "^2.7.0",
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "",
+    "gulp-clean-css": "^2.0.10",
+    "gulp-concat": "",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-imagemin": "",
+    "gulp-less": "^3.1.0",
+    "gulp-rename": "",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-append": "^0.1.6",
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-uglify": "",
+    "gulp-util": "",
+    "gulp-zip": "^3.2.0",
+    "iconv-lite": "^0.4.15"
+  }
+}

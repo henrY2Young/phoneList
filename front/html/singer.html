@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="telephone=no" name="format-detection" />
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache,must-revalidate">
+		<meta http-equiv="expires" content="0">
+		<meta name="x5-fullscreen" content="true">
+		<meta name="full-screen" content="yes">
+		<title>精彩音乐汇</title>
+		<link rel="stylesheet" type="text/css" href="../css/mui.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/app.min.css" />
+		<link rel="stylesheet" type="text/css" href="../css/iscroll-refresh.min.css" />
+		<link rel="stylesheet" href="../css/weui.min.css">
+		<link rel="stylesheet" href="../css/jquery-weui.min.css">
+		<link rel="stylesheet" type="text/css" href="../css/singer.min.css" />
+		<script src="../js/lib/jquery.js"></script>
+		<script src="../js/lib/mui.js"></script>
+		<script src="../js/lib/vue.js"></script>
+		<script src="../js/lib/iscroll-probe-5.2.0.js"></script>
+		<script src="../js/lib/iscroll-refresh.js"></script>
+		<script src="../js/lib/jquery.cookie.js"></script>
+		<script src="../js/lib/jquery-weui.min.js"></script>
+		<script src="../js/util.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="../js/singer.js"></script>
+		<script type="text/javascript">
+			(function() {
+				var useBase = true;
+				if(useBase && location.pathname.startsWith("/front/")) {
+					var path = location.pathname.replace(/\/[^\?]*?\?.*$/, '/');
+					path = path.replace(/\/[^/]*?$/, '/');
+					var segs = path.split('/');
+					segs.splice(1, 0, 'v-9.' + Math.floor(Math.random() * 10000000));
+					path = segs.join('/');
+					document.write("<" + "base href='" + path + "'>");
+				}
+			})();
+		</script>
+	</head>
+
+	<body id="singer">
+		<div class="mui-content">
+			<div class="head-icon">
+
+			</div>
+			<div class="back" v-on:tap="back"></div>
+			<div class="type">
+				<div class="singer" v-bind:class="{active:active==='男'}" data-id="man" v-on:tap="getSingerType('男')">男歌手</div>
+				<div class="singer" v-bind:class="{active:active==='女'}" data-id="woman" v-on:tap="getSingerType('女')">女歌手</div>
+				<div class="singer" v-bind:class="{active:active==='组合'}" data-id="combine" v-on:tap="getSingerType('组合')">组合歌手</div>
+			</div>
+			<div class="search">
+				<input class="input input-transparent" v-model="searchVal" type="text" placeholder="输入首字母、歌手搜索" />
+				<div class="input-cursor"></div>
+				<div class="search-icon" v-on:tap="search()"></div>
+			</div>
+
+			<div class="word-list">
+				<ul id="word-list">
+					<li>A</li>
+					<li>B</li>
+					<li>C</li>
+					<li>D</li>
+					<li>E</li>
+					<li>F</li>
+					<li>G</li>
+					<li>H</li>
+					<li>I</li>
+					<li>J</li>
+					<li>K</li>
+					<li>L</li>
+					<li>M</li>
+					<li>N</li>
+					<li>O</li>
+					<li>P</li>
+					<li>Q</li>
+					<li>R</li>
+					<li>S</li>
+					<li>T</li>
+					<li>U</li>
+					<li>V</li>
+					<li>W</li>
+					<li>X</li>
+					<li>Y</li>
+					<li>Z</li>
+				</ul>
+			</div>
+			<div class="content">
+				<div>
+					<div class="no-data" v-if="singerList.length == 0"  id="nodate" style="display: none;">
+						对不起，没有您搜索的答案
+						<div class="back-btn" v-on:tap="backSearch" v-text="'返回'"></div>
+					</div>
+					<template v-for="item in singerList">
+						<div class="item"  v-on:tap="remoteMusic(item.mSinger)">
+							<div class="singer-word" v-if="item.word">
+								<div class="word" v-text="item.word" id="{{item.word==='热'?'hot':item.word}}"></div>
+							</div>
+							<div class="singer-item" data-id="{{$index}}">
+								<img id="img{{$index}}" v-bind:src="item.headimgurl" class="head-img" height="100%" v-if='$index<=8' />
+								<img id="img{{$index}}" data-src="{{item.headimgurl}}" class="head-img" height="100%" v-else />
+								<div class="desc">
+									<div class="singername" v-text="item.mSinger">孙燕姿</div>
+									<div class="songnum" v-text="item.pv+'人&nbsp;&nbsp;已点送'"></div>
+								</div>
+								<div class="remoteMusic">
+									点
+								</div>
+							</div>
+						</div>
+					</template>
+				</div>
+			</div>
+		</div>
+		<div class="mui-popup popup" v-text="mWorld">H</div>
+		<div class="bottom-button">
+			<div class="bottom-line">
+				<img src="../img/bottom-line.png" width="100%" />
+			</div>
+			<div class="has-song" v-on:tap="openUrl('hasSong.html')">
+				<img src="../img/hasMusics.png" width="100%" />
+			</div>
+			<div class="person-center" v-on:tap="openUrl('personCenter.html')">
+				<img src="../img/person_center.png" width="100%" />
+			</div>
+		</div>
+	</body>
+
+</html>
